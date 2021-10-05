@@ -417,12 +417,12 @@ console.log(val1);
 function multiplyByTwo2(a, b, c, callback) {
   let arr = [];
 
-  if(callback && typeof callback === 'function'){
+  if (callback && typeof callback === "function") {
     for (let i = 0; i < arguments.length; i++) {
       arr[i] = callback(arguments[i] * 2); // function parametrlerini arguments vasitesile goture bilerik.
     }
   }
-  
+
   return arr;
 }
 
@@ -430,8 +430,30 @@ val1 = multiplyByTwo2(5, 10, 20, addOne);
 
 console.log(val1);
 
-
 // anonymous function
-val1 = multiplyByTwo2(5, 10, 20, function(a){return a+1;});
+val1 = multiplyByTwo2(5, 10, 20, function (a) {
+  return a + 1;
+});
 console.log(val1);
 
+console.log("*************Immediate functions***************");
+/*
+ Immediate functions
+
+ sehife yuklenen zaman bir defe isleyirler ozu ozunu call edir.
+*/
+
+(function (name) {
+  var days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  var today = new Date();
+  var msg = `Welcome. Today is ${days[today.getDay()]}`;
+  console.log(msg);
+})("Parviz"); //  buradan  parametr daxil edilir
