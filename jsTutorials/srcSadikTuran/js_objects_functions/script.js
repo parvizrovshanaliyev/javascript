@@ -387,54 +387,54 @@ console.log("*************callBack functions***************");
 let val1;
 
 // without call back
-function multiplyByTwo(a, b, c) {
-  let arr = [];
+// function multiplyByTwo(a, b, c) {
+//   let arr = [];
 
-  for (let i = 0; i < arguments.length; i++) {
-    arr[i] = arguments[i] * 2; // function parametrlerini arguments vasitesile goture bilerik.
-  }
+//   for (let i = 0; i < arguments.length; i++) {
+//     arr[i] = arguments[i] * 2; // function parametrlerini arguments vasitesile goture bilerik.
+//   }
 
-  return arr;
-}
+//   return arr;
+// }
 
-function addOne(a) {
-  return a + 1;
-}
+// function addOne(a) {
+//   return a + 1;
+// }
 
-val1 = multiplyByTwo(5, 10, 20);
-console.log(val1);
+// val1 = multiplyByTwo(5, 10, 20);
+// console.log(val1);
 
-for (let i = 0; val1.length; i++) {
-  val1[i] = addOne(val1[i]);
-}
-console.log(val1);
+// for (let i = 0; val1.length; i++) {
+//   val1[i] = addOne(val1[i]);
+// }
+// console.log(val1);
 
-val1 = addOne(10);
-console.log(val1);
+// val1 = addOne(10);
+// console.log(val1);
 
-// with callback
+// // with callback
 
-function multiplyByTwo2(a, b, c, callback) {
-  let arr = [];
+// function multiplyByTwo2(a, b, c, callback) {
+//   let arr = [];
 
-  if (callback && typeof callback === "function") {
-    for (let i = 0; i < arguments.length; i++) {
-      arr[i] = callback(arguments[i] * 2); // function parametrlerini arguments vasitesile goture bilerik.
-    }
-  }
+//   if (callback && typeof callback === "function") {
+//     for (let i = 0; i < arguments.length; i++) {
+//       arr[i] = callback(arguments[i] * 2); // function parametrlerini arguments vasitesile goture bilerik.
+//     }
+//   }
 
-  return arr;
-}
+//   return arr;
+// }
 
-val1 = multiplyByTwo2(5, 10, 20, addOne);
+// val1 = multiplyByTwo2(5, 10, 20, addOne);
 
-console.log(val1);
+// console.log(val1);
 
-// anonymous function
-val1 = multiplyByTwo2(5, 10, 20, function (a) {
-  return a + 1;
-});
-console.log(val1);
+// // anonymous function
+// val1 = multiplyByTwo2(5, 10, 20, function (a) {
+//   return a + 1;
+// });
+// console.log(val1);
 
 console.log("*************Immediate functions***************");
 /*
@@ -454,6 +454,216 @@ console.log("*************Immediate functions***************");
     "Saturday",
   ];
   var today = new Date();
-  var msg = `Welcome. Today is ${days[today.getDay()]}`;
+  var msg = `Welcome ${name}. Today is ${days[today.getDay()]}`;
   console.log(msg);
 })("Parviz"); //  buradan  parametr daxil edilir
+
+console.log("*************Function that Return Function***************");
+/*
+ Function that Return Function
+
+ yazilan functionin geriye function qaytarmasini isteyen zaman istifade edilir.
+
+*/
+
+function question(hobby) {
+  switch (hobby) {
+    case "car":
+      return function (name) {
+        console.log(`${name} do you have a car?`);
+      };
+    case "book":
+      return function (name) {
+        console.log(`${name} what is your favourite book?`);
+      };
+    case "software":
+      return function (name) {
+        console.log(`${name} are you interested in asp.net?`);
+      };
+    default:
+      return function (name) {
+        console.log(`${name} are you interested in asp.net?`);
+      };
+  }
+}
+
+var carQuestion = question("car");
+carQuestion("Parviz");
+
+console.log("*************Getters & Setters***************");
+/*
+Getters & Setters
+*/
+
+const person5 = {
+  firstName: "",
+  lastName: "",
+
+  // getter setters v1
+  get fullname() {
+    return `${this.firstName} ${this.lastName}`;
+  },
+  set fullname(value) {
+    const parts = value.split(" ");
+    this.firstName = parts[0];
+    this.lastName = parts[1];
+  },
+};
+
+// v2
+Object.defineProperty(person5, "fullname", {
+  get() {
+    return `${this.firstName} ${this.lastName}`;
+  },
+  set(value) {
+    const parts = value.split(" ");
+    this.firstName = parts[0];
+    this.lastName = parts[1];
+  },
+});
+
+person5.fullname = "Parviz Aliyev";
+console.log(person5.fullname);
+
+/*
+bu formada her hansi prop tetyin ediler se sonradan onun deyerini deyismek olmur
+deyismek ucun writable : true elave edilmelidir.
+*/
+Object.defineProperty(person5, "age", {
+  value: 50,
+  writable: true, // colden obyekte reach ederek onun age prop deyerini deyise bilerik, default false
+});
+
+person4.age = 55; // writable : true deyilse deyer 50 olaraq qalir
+
+console.log(person5);
+
+console.log("*************Call, Apply and Bind***************");
+/*
+Call, Apply and Bind
+
+ bu methodlar function prototype ile birlikde gelir.
+*/
+
+var wlcm = function () {
+  console.log(`welcome ${this.name}`);
+};
+var wlcm2 = function (a, b) {
+  console.log(`welcome ${this.name} , ${a} ${b}`);
+};
+var parviz = { name: "Parviz" };
+wlcm();
+
+/*
+call ve apply eger function param qebul etmezse funnksionalliq olaraq ikiside thisi- evez edir, ferq function param qebul eden zaman bas verir.
+call methoduna parametrler tek tek , apply da ise array icerisinde gonderilir.
+*/
+wlcm.call(parviz); // call methoduna gonderilen obyekt this-i evez edir.
+wlcm.apply(parviz); // apply methoduna gonderilen obyekt this-i evez edir.
+
+wlcm2.call(parviz, "a", "b");
+wlcm2.apply(parviz, ["a", "b"]);
+/*
+bind methodu geriye function donderecek
+*/
+wlcmparviz = wlcm.bind(parviz);
+wlcmparviz();
+
+wlcmparviz = wlcm2.bind(parviz);
+wlcmparviz("a", "b");
+
+console.log(
+  "************* Demo : Numeric Range Call, Apply and Bind***************"
+);
+/*
+Call, Apply and Bind
+
+ bu methodlar function prototype ile birlikde gelir.
+*/
+
+var numObj = {
+  min: 0,
+  max: 100,
+  checkNumericRange: function (value) {
+    if (typeof value !== "number") {
+      return false;
+    } else {
+      return value >= this.min && value <= this.max;
+    }
+  },
+};
+
+console.log(numObj.checkNumericRange(20));
+console.log(numObj.checkNumericRange(-20));
+
+/*
+numObj obyektinin checkNumericRange function-ni  diger bir obyekte call vasitesile
+tetbiq ede bilerik.
+*/
+
+var numObj1 = {
+  min: 50,
+  max: 60,
+};
+
+console.log(numObj.checkNumericRange.call(numObj1, 65));
+console.log(numObj.checkNumericRange.apply(numObj1, [65]));
+
+var checkNumericRange = numObj.checkNumericRange.bind(numObj1);
+console.log(checkNumericRange(56));
+
+console.log("************* Error handling***************");
+/*
+Error handling
+*/
+
+// reference error
+var user = { name: "parviz" };
+
+try {
+  // console.log(abc());
+
+  console.log(user.name);
+  if (!user.email) {
+    throw new SyntaxError("User has no email");
+  }
+} catch (error) {
+  console.log(error);
+  console.log(error.message);
+  console.log(error.name);
+  console.log(error instanceof ReferenceError);
+  console.log(error instanceof TypeError);
+  console.log(typeof error);
+} finally {
+  console.log("finally");
+}
+
+// demo
+// document.getElementById("submitBtn").addEventListener("click", function (e) {
+//   var name = document.getElementById("name");
+//   var email = document.getElementById("email");
+//   var errors = document.getElementById("errors");
+//   e.preventDefault();
+// });
+var submitBtn = document.getElementById("submitBtn");
+
+if (submitBtn) {
+  submitBtn.addEventListener("click", function (e) {
+    var name = document.getElementById("name");
+    var email = document.getElementById("email");
+    var errors = document.getElementById("errors");
+
+    try {
+      if (name.value.length === 0) {
+        throw new Error("name is required");
+      }
+
+      if (name.value.length > 20) {
+        throw new Error("name is too long");
+      }
+    } catch (error) {
+      errors.innerHTML = error.message;
+    }
+    e.preventDefault();
+  });
+}
