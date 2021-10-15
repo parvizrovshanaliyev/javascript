@@ -262,7 +262,78 @@ console.log(`************* es6 : classes***************`);
 
 /*
     es6 : classes
-
 */
 
-var Person = function (name, job, yearOfBirth) {};
+let Person = function (name, job, yearOfBirth) {
+  this.name = name;
+  this.yearOfBirth = yearOfBirth;
+  this.job = job;
+};
+
+Person.prototype.calculateAge= function(){
+  return 2021 - this.yearOfBirth;
+}
+
+let rufat = new Person('Rufat', 'dev', 2020);
+console.log(rufat.calculateAge());
+
+// es6
+
+class Person1{
+  constructor(name,job,yearOfBirth) {
+  this.name=name;
+  this.job=job;
+  this.yearOfBirth=yearOfBirth;
+  }
+  
+  calculateAge(){
+    return 2021 - this.yearOfBirth;
+  }
+//es6 : static methods
+  static sayHi(){
+    console.log('Hello world from static methods')
+  }
+}
+let rufat1 = new Person1('Rufat', 'dev', 2020);
+
+console.log(rufat1.calculateAge());
+
+
+console.log(`************* es6 : static methods***************`);
+
+/*
+    es6 : static methods
+*/
+// static method bir basa obyektin oz uzerinden cagrilmalidir.
+/* wrong!   rufat1.sayHi(); */
+
+// right
+Person1.sayHi();
+
+
+/*
+    es6 :sub classes
+*/
+
+class PersonES6{
+  constructor(firstName,lastName){
+    this.firstName=firstName;
+    this.lastName=lastName;
+  }
+}
+
+class CustomerES6 extends PersonES6{
+  constructor(firstName,lastName,phone,userName){
+    super(firstName,lastName)
+    this.phone=phone;
+    this.userName=userName;
+  }
+}
+
+let customer= new CustomerES6('musteri','musteriOglu',12345,'musterili');
+
+console.log(customer);
+ 
+
+
+

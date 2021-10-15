@@ -645,13 +645,13 @@ try {
 //   var errors = document.getElementById("errors");
 //   e.preventDefault();
 // });
-var submitBtn = document.getElementById("submitBtn");
+const el = document.getElementById("submitBtn");
 
-if (submitBtn) {
-  submitBtn.addEventListener("click", function (e) {
-    var name = document.getElementById("name");
-    var email = document.getElementById("email");
-    var errors = document.getElementById("errors");
+if (el) {
+  el.addEventListener("click", function (e) {
+    const name = document.getElementById("name");
+    const email = document.getElementById("email");
+    const errors = document.getElementById("errors");
 
     try {
       if (name.value.length === 0) {
