@@ -239,3 +239,30 @@ console.log(val);
 
 val = numbers1.get(1);
 console.log(val);
+
+console.log(`************* es6 : Sets***************`);
+
+/*
+    es6 : Sets
+
+    // collection - unique value saxlayir , yeni eyni deyerleri ozunde saxlamir.
+*/
+
+var mySet = new Set();
+mySet.add(1);
+mySet.add(2);
+mySet.add(2);
+mySet.add("two");
+mySet.add({ a: 1, b: 2 });
+var obj = { a: 1, b: 2 };
+mySet.add(obj);
+console.log(mySet);
+
+console.log(`************* es6 : classes***************`);
+
+/*
+    es6 : classes
+
+*/
+
+var Person = function (name, job, yearOfBirth) {};
