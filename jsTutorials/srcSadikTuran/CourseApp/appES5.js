@@ -65,7 +65,6 @@ document.getElementById('course-list').addEventListener('click',function(e){
     console.log(e.target);
     
     const ui= new UI();
-    
     ui.deleteCourse(e.target);
     
 })
