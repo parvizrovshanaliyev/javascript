@@ -125,8 +125,4 @@ const getAVG4= (...a:number[]) : string => {
     return 'result :' + result;
 }
 
-/*
-* Interfaces
-* 
-* 
-* */
+
