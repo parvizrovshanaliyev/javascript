@@ -1,10 +1,9 @@
 ﻿import {Product} from "./Product";
 
 export class DataSource{
-    get products(): Array<Product> {
-        return this._products;
-    }
-    private _products:Array<Product>;
+   
+    private readonly _products:Array<Product>;
+    
     constructor() {
         this._products= new Array<Product>(
             new Product(1,'Prd1','Phone',100),
@@ -13,6 +12,8 @@ export class DataSource{
             new Product(4,'Prd4','Phone',400)
         )
     }
-    
-    
+
+    getProducts(): Array<Product> {
+        return this._products;
+    }
 }
